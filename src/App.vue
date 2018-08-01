@@ -7,5 +7,11 @@
 </template>
 
 <style lang="less">
-
+//Global styles
+* {
+  font-family: 'Raleway', sans-serif;
+}
+.mono {
+  font-family: 'Inconsolata', monospace;
+}
 </style>

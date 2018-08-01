@@ -1,24 +1,25 @@
 <template>
-    <div id="login">
-        <input type="text" id="username" v-model="username">
-        <input type="password" id="password" v-model="password">
-        <button id="login" @click="logIn">Login</button>
-        <p v-if="error">{{ error }}</p>
+    <div id="home">
+      <Login></Login>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Login from '@/components/Login.vue'
 export default {
     name: 'Home',
     data() {
         return {
-            username: '',
+            /*username: '',
             password: '',
-            error: ''
+            error: ''*/
         }
     },
-    methods: {
+    components: {
+      Login
+    }
+    /*methods: {
         logIn() {
             console.log('Logging in...')
             axios.post('http://' + location.hostname + ':3000/login', {
@@ -37,6 +38,6 @@ export default {
                 console.log(error);
             });
         }
-    }
+    }*/
 }
 </script>
