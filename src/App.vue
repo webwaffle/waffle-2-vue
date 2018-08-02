@@ -15,6 +15,7 @@
 </script>
 
 <style lang="less">
+//https://coolors.co/2b2d42-004ba8-ff6700-011936-e83f6f
 //Global styles
 body {
   margin: 0;
@@ -25,7 +26,14 @@ body {
 .mono {
   font-family: 'Inconsolata', monospace;
 }
+.error {
+  background-color: #ff6700;
+  color: white;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 3px;
+}
 #main {
-  margin-left: 150px;
+  margin-left: 300px;
 }
 </style>

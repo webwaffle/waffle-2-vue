@@ -1,9 +1,8 @@
 <template>
     <div id="home">
       <Login v-if="!checkLoggedIn"></Login>
-      <div v-if="checkLoggedIn">
+      <div v-else>
         <PostCard v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></PostCard>
-        <PostCard v-bind:post="post"></PostCard>
       </div>
     </div>
 </template>
@@ -16,11 +15,7 @@ export default {
     name: 'Home',
     data() {
         return {
-            posts: [],
-            post: {
-              title: 'hi',
-              content: 'post from vue'
-            }
+            posts: []
         }
     },
     components: {
