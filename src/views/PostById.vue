@@ -4,43 +4,32 @@
   <p class="time">{{ post.posted }}</p>
   <p class="author">By {{ post.poster }}</p>
   <p class="content">{{ post.content }}</p>
-  <button class="like" @click="likePost"><i class="material-icons">favorite</i></button>
+  <LikeButton v-bind:id="post.id"></LikeButton>
 </div>
 </template>
 
 <script>
 import axios from 'axios'
 import moment from 'moment'
+import LikeButton from '@/components/LikeButton.vue'
 export default {
   data() {
     return {
       post: {}
     }
   },
+  components: {
+    LikeButton
+  },
   created() {
     axios.get('http://' + location.hostname + ':3000/post/' + this.$route.params.id)
     .then(res => {
-      this.post = res.data.post;
+      Vue.set(this, 'post', res.data.post);
       this.post.posted = moment(this.post.posted, "MM-DD-YYYY h:mm:ss a").fromNow();
     })
     .catch(error => {
       console.log(error)
     })
-  },
-  methods: {
-    likePost() {
-      axios.put('http://' + location.hostname + ':3000/like/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey, {})
-      .then(res => {
-        if(res.data.success) {
-          console.log('liked')
-        } else {
-          console.log(res.data.error)
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
   }
 }
 </script>
