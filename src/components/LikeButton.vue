@@ -1,5 +1,5 @@
 <template>
-<i v-if="likedInData" class="material-icons LikeButtonLiked" @click="likePost">favorite</i>
+<i v-if="liked" class="material-icons LikeButtonLiked" @click="likePost">favorite</i>
 <i v-else class="material-icons LikeButtonNotLiked" @click="likePost">favorite</i>
 </template>
 
@@ -7,15 +7,14 @@
 import axios from 'axios'
 export default {
   props: {
-    id: Number,
-    liked: Boolean
+    id: Number
   },
   data() {
     return {
-      likedInData: false
+      liked: false
     }
   },
-  /*created() { //Get whether or not a post is liked
+  created() { //Get whether or not a post is liked
     console.log(this.$props.id)
     axios.get('http://' + location.hostname + ':3000/checkliked/' + this.$props.id + '?key=' + this.$store.state.user.apiKey)
     .then(res => {
@@ -28,11 +27,6 @@ export default {
     .catch(error => {
       console.log(error)
     })
-  },*/
-  watch: {
-    liked(newVal, oldVal) {
-      this.likedInData = newVal
-    }
   },
   methods: {
     likePost() {
@@ -40,7 +34,7 @@ export default {
       .then(res => {
         if(res.data.success) {
           console.log('liked');
-          this.likedInData = !this.likedInData
+          this.liked = !this.liked
         } else {
           console.log(res.data.error)
         }

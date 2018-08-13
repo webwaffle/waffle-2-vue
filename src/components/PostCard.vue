@@ -1,13 +1,13 @@
 <template>
-  <router-link :to="{name: 'postById', params: {id: $props.post.id}}">
+  <!--<router-link :to="{name: 'postById', params: {id: $props.post.id}}">-->
   <div class="PostCard animated bounceInDown">
-    <h1>{{ $props.post.title }}</h1>
-    <p class="author">By {{ $props.post.poster }}</p>
-    <p class="posted">{{ relativeTime }}</p>
-    <p class="content">{{ $props.post.content }}</p>
-    <LikeButton :id="$props.post.id" :liked="liked"></LikeButton>
-  </div>
-</router-link>
+      <h1>{{ $props.post.title }}</h1>
+      <p class="author">By {{ $props.post.poster }}</p>
+      <p class="posted">{{ relativeTime }}</p>
+      <p class="content">{{ $props.post.content }}</p>
+      <LikeButton :id="$props.post.id"></LikeButton>
+    </div>
+  <!--</router-link>-->
 </template>
 
 <script>
