@@ -1,6 +1,6 @@
 <template>
-<i v-if="liked" class="material-icons LikeButtonLiked" @click="likePost">favorite</i>
-<i v-else class="material-icons LikeButtonNotLiked" @click="likePost">favorite</i>
+<i v-if="liked" class="material-icons LikeButtonLiked" @click="likePost" :title="liked">favorite</i>
+<i v-else class="material-icons LikeButtonNotLiked" @click="likePost" :title="liked">favorite</i>
 </template>
 
 <script>
@@ -15,11 +15,11 @@ export default {
     }
   },
   created() { //Get whether or not a post is liked
-    console.log(this.$props.id)
+    //console.log(this.$props.id)
     axios.get('http://' + location.hostname + ':3000/checkliked/' + this.$props.id + '?key=' + this.$store.state.user.apiKey)
     .then(res => {
       if(res.data.success) {
-        this.liked = res.data.liked;
+        this.$set(this, 'liked', res.data.liked)
       } else {
         console.log(res)
       }
@@ -49,7 +49,7 @@ export default {
 
 <style lang="less">
 .LikeButtonLiked {
-  color: #E83F6F;
+  color: #E83F6F !important;
 }
 .LikeButtonNotLiked {
 

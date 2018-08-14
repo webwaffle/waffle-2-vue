@@ -4,7 +4,7 @@
   <p class="time">{{ post.posted }}</p>
   <p class="author">By {{ post.poster }}</p>
   <p class="content">{{ post.content }}</p>
-  <LikeButton :id="post.id" :liked="liked"></LikeButton>
+  <LikeButton :id="parseInt($route.params.id, 10)"></LikeButton>
 </div>
 </template>
 
@@ -17,7 +17,6 @@ export default {
   data() {
     return {
       post: {},
-      liked: false
     }
   },
   components: {
@@ -29,17 +28,6 @@ export default {
       Vue.set(this, 'post', res.data.post);
       //console.log(res.data.post)
       this.post.posted = moment(this.post.posted, "MM-DD-YYYY h:mm:ss a").fromNow();
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    axios.get('http://' + location.hostname + ':3000/checkliked/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey)
-    .then(res => {
-      if(res.data.success) {
-        this.liked = res.data.liked;
-      } else {
-        console.log(res)
-      }
     })
     .catch(error => {
       console.log(error)

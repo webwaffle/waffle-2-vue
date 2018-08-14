@@ -22,6 +22,10 @@ export const store = new Vuex.Store({
     login(state, data) {
       state.user.username = data.username;
       state.user.apiKey = data.apiKey;
+    },
+    logout(state) {
+      state.user.username = null;
+      state.user.apiKey = null;
     }
   },
   plugins: [vuexLocal.plugin]

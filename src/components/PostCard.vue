@@ -1,5 +1,5 @@
 <template>
-  <!--<router-link :to="{name: 'postById', params: {id: $props.post.id}}">-->
+  <router-link :to="{name: 'postById', params: {id: $props.post.id}}">
   <div class="PostCard animated bounceInDown">
       <h1>{{ $props.post.title }}</h1>
       <p class="author">By {{ $props.post.poster }}</p>
@@ -7,7 +7,7 @@
       <p class="content">{{ $props.post.content }}</p>
       <LikeButton :id="$props.post.id"></LikeButton>
     </div>
-  <!--</router-link>-->
+  </router-link>
 </template>
 
 <script>

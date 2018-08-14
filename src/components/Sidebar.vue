@@ -1,7 +1,8 @@
 <template>
   <div id="sidebar">
     <router-link to="/">Home</router-link>
-    <p v-if="!checkLoggedIn" class="error">You are not logged in.</p>
+    <p v-if="!checkLoggedIn" class="error animated bounceInLeft">You are not logged in.</p>
+    <a @click="logout" v-else>Logout</a>
   </div>
 </template>
 
@@ -11,6 +12,12 @@ export default {
      checkLoggedIn() {
        return !!this.$store.state.user.username
      }
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('vuex');
+      this.$store.commit('logout');
+    }
   }
 }
 </script>
