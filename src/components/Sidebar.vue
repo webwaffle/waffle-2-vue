@@ -1,6 +1,7 @@
 <template>
   <div id="sidebar">
     <router-link to="/">Home</router-link>
+    <router-link to="/create-post">Create a post</router-link>
     <p v-if="!checkLoggedIn" class="error animated bounceInLeft">You are not logged in.</p>
     <a @click="logout" v-else>Logout</a>
   </div>

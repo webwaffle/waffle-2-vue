@@ -1,7 +1,7 @@
 <template>
   <router-link :to="{name: 'postById', params: {id: $props.post.id}}">
   <div class="PostCard animated bounceInDown">
-      <h1>{{ $props.post.title }}</h1>
+      <h1 class="title">{{ $props.post.title }}</h1>
       <p class="author">By {{ $props.post.poster }}</p>
       <p class="posted">{{ relativeTime }}</p>
       <p class="content">{{ $props.post.content }}</p>
@@ -50,7 +50,7 @@ export default {
 .PostCard {
   float: left;
   margin: 8px;
-  padding: 5px;
+  padding: 12px;
   width: 300px;
   height: 200px;
   box-shadow: 0px 0px 10px gray;
