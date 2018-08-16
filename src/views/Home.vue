@@ -1,5 +1,7 @@
 <template>
     <div id="home">
+      <input type="text" v-model="search" @input="searchPosts" id="searchBar" placeholder="Search">
+      <br><br>
       <Login v-if="!checkLoggedIn"></Login>
       <div v-else>
         <PostCard v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></PostCard>
@@ -15,7 +17,8 @@ export default {
     name: 'Home',
     data() {
         return {
-            posts: []
+            posts: [],
+            search: ''
         }
     },
     components: {
@@ -40,6 +43,25 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+    },
+    methods: {
+      searchPosts() {
+        axios.get('http://' + location.hostname + ':3000/search-posts?q=' + this.search)
+        .then((res) => {
+          this.posts = res.data.results
+        })
+        .catch(console.log)
+      }
     }
 }
 </script>
+
+<style lang="less">
+#searchBar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 300px;
+}
+</style>

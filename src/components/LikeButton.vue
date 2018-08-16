@@ -1,6 +1,8 @@
 <template>
-<i v-if="liked" class="material-icons LikeButtonLiked" @click="likePost" :title="liked">favorite</i>
-<i v-else class="material-icons LikeButtonNotLiked" @click="likePost" :title="liked">favorite</i>
+<a>
+  <i v-if="liked" class="material-icons LikeButtonLiked" @click="likePost">favorite</i>
+  <i v-else class="material-icons LikeButtonNotLiked" @click="likePost">favorite</i>
+</a>
 </template>
 
 <script>

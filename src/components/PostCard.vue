@@ -4,7 +4,6 @@
       <h1 class="title">{{ $props.post.title }}</h1>
       <p class="author">By {{ $props.post.poster }}</p>
       <p class="posted">{{ relativeTime }}</p>
-      <p class="content">{{ $props.post.content }}</p>
       <LikeButton :id="$props.post.id"></LikeButton>
     </div>
   </router-link>
