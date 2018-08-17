@@ -1,7 +1,7 @@
 <template>
     <div id="home">
-      <input type="text" v-model="search" @input="searchPosts" id="searchBar" placeholder="Search">
-      <br><br>
+      <input type="text" v-model="search" @input="searchPosts" id="searchBar" placeholder="Search" v-if="checkLoggedIn">
+      <br><br><br><br>
       <Login v-if="!checkLoggedIn"></Login>
       <div v-else>
         <PostCard v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></PostCard>
@@ -59,6 +59,7 @@ export default {
 <style lang="less">
 #searchBar {
   width: 100%;
+  height: 40px;
   position: fixed;
   top: 0;
   right: 0;
