@@ -6,14 +6,16 @@
   <p class="content" v-html="post.content"></p>
   <LikeButton :id="parseInt($route.params.id, 10)"></LikeButton>
   <p class="likes">{{ post.likes }}</p>
-  <div class="comment" v-for="comment in post.comments">
-    <p>{{ comment.comment }}</p>
+  <input type="text" v-model="comment">
+  <button @click="createComment">Comment</button>
+  <p v-if="commentSuccessText">{{ commentSuccessText }}</p>
+  <div class="comment" v-for="x in post.comments">
+    <p>{{ x.comment }}</p>
   </div>
 </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import axios from 'axios'
 import moment from 'moment'
 import converter from '@/converter'
@@ -22,6 +24,8 @@ export default {
   data() {
     return {
       post: {},
+      comment: '',
+      commentSuccessText: null
     }
   },
   components: {
@@ -30,13 +34,29 @@ export default {
   created() {
     axios.get('http://' + location.hostname + ':3000/post/' + this.$route.params.id)
     .then(res => {
-      Vue.set(this, 'post', res.data.post);
-      Vue.set(this.post, 'posted', moment(this.post.posted, "MM-DD-YYYY h:mm:ss a").fromNow());
-      Vue.set(this.post, 'content', converter.makeHtml(this.post.content))
+      this.$set(this, 'post', res.data.post);
+      this.$set(this.post, 'posted', moment(this.post.posted, "MM-DD-YYYY h:mm:ss a").fromNow());
+      this.$set(this.post, 'content', converter.makeHtml(this.post.content));
     })
     .catch(error => {
       console.log(error)
     })
+  },
+  methods: {
+    createComment() {
+      if(this.comment != "") {
+        axios.post('http://' + location.hostname + ':3000/create-comment/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey, {
+          comment: this.comment
+        })
+        .then(res => {
+          this.$set(this.post, 'comments', res.data.comments);
+        })
+        .catch(console.log)
+      } else {
+        this.commentSuccessText = "You need a comment first";
+        setTimeout(() => { this.commentSuccessText = null }, 1500);
+      }
+    }
   }
 }
 </script>
