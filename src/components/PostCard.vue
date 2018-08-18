@@ -5,6 +5,7 @@
       <p class="author">By {{ $props.post.poster }}</p>
       <p class="posted">{{ relativeTime }}</p>
       <LikeButton :id="$props.post.id"></LikeButton>
+      <p class="likes">{{ post.likes }}</p>
     </div>
   </router-link>
 </template>
@@ -26,7 +27,7 @@ export default {
   components: { LikeButton },
   data() {
     return {
-      liked: false
+
     }
   }/*,
   created() {
@@ -66,5 +67,10 @@ export default {
     box-shadow: 0px 0px 30px gray;
     transition: all .5s;
   }
+}
+
+.likes {
+  margin: 0;
+  display: inline;
 }
 </style>

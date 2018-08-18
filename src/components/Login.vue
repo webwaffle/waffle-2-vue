@@ -4,7 +4,7 @@
     <input type="text" v-model="username" placeholder="Username"><br>
     <input type="password" v-model="password" placeholder="Password"><br><br><br>
     <a @click="loginUser" id="loginButton" v-if="isLogin">Login</a>
-    <a @click="loginUser" id="loginButton" v-if="!isLogin">Create Account and Login</a>
+    <a @click="createUser" id="loginButton" v-if="!isLogin">Create Account and Login</a>
     <p class="success-text" v-if="success_text">{{ success_text }}</p>
   </div>
 </template>
@@ -32,7 +32,7 @@
             //console.log(response);
             if(response.data.success) {
               this.$store.commit('login', {username: response.data.username, apiKey: response.data.apiKey});
-              this.button_text = 'Logged In!';
+              //this.button_text = 'Logged In!';
             } else {
               this.success_text = response.data.error
             }
@@ -45,7 +45,22 @@
         }
       },
       createUser() {
-
+        if(this.username && this.password) {
+          axios.post('http://' + location.hostname + ':3000/create-user', {
+            username: this.username,
+            password: this.password,
+          })
+          .then((res) => {
+            if(res.data.success) {
+              this.$store.commit('login', {username: res.data.username, apiKey: res.data.apiKey});
+            } else {
+              this.success_text = res.data.error
+            }
+          })
+          .catch(console.log)
+        } else {
+          this.success_text = "Please enter a username and password. ";
+        }
       }
     }
   }

@@ -5,6 +5,10 @@
   <p class="author">By {{ post.poster }}</p>
   <p class="content" v-html="post.content"></p>
   <LikeButton :id="parseInt($route.params.id, 10)"></LikeButton>
+  <p class="likes">{{ post.likes }}</p>
+  <div class="comment" v-for="comment in post.comments">
+    <p>{{ comment.comment }}</p>
+  </div>
 </div>
 </template>
 
