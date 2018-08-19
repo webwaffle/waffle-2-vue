@@ -9,9 +9,7 @@
   <input type="text" v-model="comment">
   <button @click="createComment">Comment</button>
   <p v-if="commentSuccessText">{{ commentSuccessText }}</p>
-  <div class="comment" v-for="x in post.comments">
-    <p>{{ x.comment }}</p>
-  </div>
+  <Comment v-for="x in post.comments" :comment="x"></Comment>
 </div>
 </template>
 
@@ -20,6 +18,7 @@ import axios from 'axios'
 import moment from 'moment'
 import converter from '@/converter'
 import LikeButton from '@/components/LikeButton.vue'
+import Comment from '@/components/Comment.vue'
 export default {
   data() {
     return {
@@ -29,7 +28,8 @@ export default {
     }
   },
   components: {
-    LikeButton
+    LikeButton,
+    Comment
   },
   created() {
     axios.get('http://' + location.hostname + ':3000/post/' + this.$route.params.id)

@@ -6,6 +6,7 @@
       <p class="posted">{{ relativeTime }}</p>
       <LikeButton :id="$props.post.id"></LikeButton>
       <p class="likes">{{ post.likes }}</p>
+      <p class="comments">{{ post.comments.length }} comments</p>
     </div>
   </router-link>
 </template>
