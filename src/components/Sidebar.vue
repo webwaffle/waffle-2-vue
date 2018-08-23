@@ -4,8 +4,11 @@
     <router-link to="/create-post">Create a post</router-link>
     <p v-if="!checkLoggedIn" class="error animated bounceInLeft">You are not logged in.</p>
     <a @click="logout" v-else>Logout</a>
-    <div class="chat" v-if="chats.length" v-for="chat in chats" :key="chat.id">
-      <h2>{{ chat.name }}</h2>
+    <div id="chats">
+      <h2>Chats</h2>
+      <div class="chat" v-if="chats.length" v-for="chat in chats" :key="chat.id">
+        <h2>{{ chat.name }}</h2>
+      </div>
     </div>
   </div>
 </template>
@@ -48,7 +51,7 @@ export default {
 
 <style scoped lang="less">
 //https://coolors.co/2b2d42-004ba8-ff6700-011936-e83f6f
-div {
+#sidebar {
   position: fixed;
   height: 100%;
   width: 300px;
@@ -74,6 +77,26 @@ div {
   p {
     bottom: 0;
     position: absolute;
+  }
+  #chats {
+    float: left;
+    margin-top: 300px;
+    width: 80%;
+    border: 1px solid white;
+    border-radius: 8px;
+    //padding: 20px;
+    margin: 5px;
+    h2 {
+      color: white;
+    }
+    .chat {
+      width: 100%;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
+      &:last-child {
+        border-bottom: 0px solid white;
+      }
+    }
   }
 }
 </style>
