@@ -7,7 +7,7 @@
     <div id="chats">
       <h2>Chats</h2>
       <div class="chat" v-if="chats.length" v-for="chat in chats" :key="chat.id">
-        <h2>{{ chat.name }}</h2>
+        <router-link :to="{ name: 'chat', params: {id: chat.id} }"><h2>{{ chat.name }}</h2></router-link>
       </div>
     </div>
   </div>
@@ -82,17 +82,20 @@ export default {
     float: left;
     margin-top: 300px;
     width: 80%;
-    border: 1px solid white;
+    border: 1px solid white ;
     border-radius: 8px;
     //padding: 20px;
     margin: 5px;
     h2 {
       color: white;
     }
+    a {
+
+    }
     .chat {
       width: 100%;
-      border-top: 1px solid white;
-      border-bottom: 1px solid white;
+      border-top: 1px solid white !important;
+      border-bottom: 1px solid white !important;
       &:last-child {
         border-bottom: 0px solid white;
       }
