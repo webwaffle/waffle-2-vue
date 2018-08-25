@@ -1,5 +1,6 @@
 <template>
   <div id="sidebar">
+    <h1 style="color:white">Waffle</h1>
     <router-link to="/">Home</router-link>
     <router-link to="/create-post">Create a post</router-link>
     <p v-if="!checkLoggedIn" class="error animated bounceInLeft">You are not logged in.</p>
@@ -69,6 +70,7 @@ export default {
     border-radius: 8px;
     color: white;
     text-decoration: none;
+    cursor: pointer;
     &.router-link-exact-active {
       color: #004ba8;
       border: 1px solid #004ba8;

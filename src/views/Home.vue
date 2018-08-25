@@ -4,7 +4,7 @@
       <br><br><br><br>
       <Login v-if="!checkLoggedIn"></Login>
       <div v-else>
-        <PostCard v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></PostCard>
+        <PostCard v-for="post in posts.reverse()" v-bind:key="post.id" v-bind:post="post"></PostCard>
       </div>
     </div>
 </template>

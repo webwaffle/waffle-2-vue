@@ -4,6 +4,7 @@
     <textarea rows="12" cols="80" placeholder="Post Content" v-model="content" @input="updateMarkdown"></textarea><br>
     <button @click="sendPost">Submit</button>
     <p v-if="successText">{{ successText }}</p>
+    <p>To add emojis, please use <a href="https://github.com/showdownjs/showdown/wiki/emojis" target="_blank">this</a> emoji list.</p>
     <p>Result:</p>
     <div v-html="renderedHtml"></div>
   </div>

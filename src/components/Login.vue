@@ -72,7 +72,7 @@
     //margin: auto;
     border: 1px solid black;
     border-radius: 5px;
-    width: 20%;
+    width: 300px;
     height: 200px;
     margin-left: 40%;
     margin-top: 15%;
@@ -83,6 +83,7 @@
       color: white;
       padding: 20px;
       border-radius: 5px;
+      cursor: pointer;
     }
     .active {
       border: 1px solid #011936;
