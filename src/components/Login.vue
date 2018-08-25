@@ -32,7 +32,7 @@
             //console.log(response);
             if(response.data.success) {
               this.$store.commit('login', {username: response.data.username, apiKey: response.data.apiKey});
-              //this.button_text = 'Logged In!';
+              location.reload()
             } else {
               this.success_text = response.data.error
             }
@@ -53,6 +53,7 @@
           .then((res) => {
             if(res.data.success) {
               this.$store.commit('login', {username: res.data.username, apiKey: res.data.apiKey});
+              location.reload()
             } else {
               this.success_text = res.data.error
             }

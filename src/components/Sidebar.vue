@@ -4,7 +4,7 @@
     <router-link to="/create-post">Create a post</router-link>
     <p v-if="!checkLoggedIn" class="error animated bounceInLeft">You are not logged in.</p>
     <a @click="logout" v-else>Logout</a>
-    <div id="chats">
+    <div id="chats" v-if="checkLoggedIn">
       <h2>Chats</h2>
       <div class="chat" v-if="chats.length" v-for="chat in chats" :key="chat.id">
         <router-link :to="{ name: 'chat', params: {id: chat.id} }"><h2>{{ chat.name }}</h2></router-link>
