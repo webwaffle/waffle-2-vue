@@ -4,7 +4,7 @@
       <br><br><br><br>
       <Login v-if="!checkLoggedIn"></Login>
       <div v-else>
-        <PostCard v-for="post in posts.reverse()" v-bind:key="post.id" v-bind:post="post"></PostCard>
+        <PostCard v-for="post in posts.slice().reverse()" :key="post.id" :post="post"></PostCard>
       </div>
     </div>
 </template>
@@ -48,7 +48,8 @@ export default {
       searchPosts() {
         axios.get('http://' + location.hostname + ':3000/search-posts?q=' + this.search)
         .then((res) => {
-          this.posts = res.data.results
+          this.$set(this, 'posts', res.data.posts)
+          this.posts.reverse();
         })
         .catch(console.log)
       }

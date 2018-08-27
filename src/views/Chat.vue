@@ -6,6 +6,7 @@
     <h3>Invite someone</h3>
     <input type="text" placeholder="Username" v-model="toInvite">
     <button @click="inviteUser">Invite</button>
+    <p v-html="inviteError" v-if="inviteError"></p>
   </div>
   <div class="message" v-for="message in chat.messages">
     <p class="text mine" v-if="message.from == $store.state.user.username">{{ message.message }}</p>
@@ -31,6 +32,7 @@ export default {
       message: '',
       error: null,
       sendError: null,
+      inviteError: null,
       toInvite: '',
       interval: null
     }
@@ -77,13 +79,22 @@ export default {
         username: this.toInvite
       })
       .then(res => {
-
+        if(res.data.success) {
+          this.inviteError = '<i class="material-icons">check</i>Successfully invited user ' + this.toInvite;
+          this.toInvite = '';
+          setTimeout(() => { this.inviteError = null }, 1500);
+        } else {
+          this.inviteError = '<i class="material-icons">error</i>Already a member';
+          this.toInvite = '';
+          setTimeout(() => { this.inviteError = null }, 1500);
+        }
       })
       .catch(console.log)
     }
   },
   beforeRouteLeave(to, from, next) {
-    clearInterval(this.interval)
+    clearInterval(this.interval);
+    next();
   }
 }
 </script>
