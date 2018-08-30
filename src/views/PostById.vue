@@ -32,7 +32,7 @@ export default {
     Comment
   },
   created() {
-    axios.get('http://' + location.hostname + ':3000/post/' + this.$route.params.id)
+    axios.get(location.protocol + '//' + location.hostname + ':3000/post/' + this.$route.params.id)
     .then(res => {
       this.$set(this, 'post', res.data.post);
       this.$set(this.post, 'posted', moment(this.post.posted, "MM-DD-YYYY h:mm:ss a").fromNow());
@@ -45,7 +45,7 @@ export default {
   methods: {
     createComment() {
       if(this.comment != "") {
-        axios.post('http://' + location.hostname + ':3000/create-comment/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey, {
+        axios.post(location.protocol + '//' + location.hostname + ':3000/create-comment/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey, {
           comment: this.comment
         })
         .then(res => {

@@ -27,7 +27,7 @@ export default {
   methods: {
     sendPost() {
       if(this.title != '' && this.content != '') {
-        axios.post('http://' + location.hostname + ':3000/create-post?key=' + this.$store.state.user.apiKey, {title: this.title, content: this.content})
+        axios.post(location.protocol + '//' + location.hostname + ':3000/create-post?key=' + this.$store.state.user.apiKey, {title: this.title, content: this.content})
         .then((res) => {
           if(res.data.success) {
             this.successText = "Post Created!";

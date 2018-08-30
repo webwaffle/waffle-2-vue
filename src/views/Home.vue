@@ -31,7 +31,7 @@ export default {
       }
     },
     created() {
-      axios.get('http://' + location.hostname + ':3000/posts')
+      axios.get(location.protocol + '//' + location.hostname + ':3000/posts')
       .then((res) => {
         //console.log(res)
         if(res.data.success) {
@@ -46,7 +46,7 @@ export default {
     },
     methods: {
       searchPosts() {
-        axios.get('http://' + location.hostname + ':3000/search-posts?q=' + this.search)
+        axios.get(location.protocol + '//' + location.hostname + ':3000/search-posts?q=' + this.search)
         .then((res) => {
           this.$set(this, 'posts', res.data.posts)
           this.posts.reverse();

@@ -18,7 +18,7 @@ export default {
   },
   created() { //Get whether or not a post is liked
     //console.log(this.$props.id)
-    axios.get('http://' + location.hostname + ':3000/checkliked/' + this.$props.id + '?key=' + this.$store.state.user.apiKey)
+    axios.get(location.protocol + '//' + location.hostname + ':3000/checkliked/' + this.$props.id + '?key=' + this.$store.state.user.apiKey)
     .then(res => {
       if(res.data.success) {
         this.$set(this, 'liked', res.data.liked)
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     likePost() {
-      axios.put('http://' + location.hostname + ':3000/like/' + this.$props.id + '?key=' + this.$store.state.user.apiKey, {})
+      axios.put(location.protocol + '//' + location.hostname + ':3000/like/' + this.$props.id + '?key=' + this.$store.state.user.apiKey, {})
       .then(res => {
         if(res.data.success) {
           console.log('liked');
