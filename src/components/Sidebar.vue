@@ -7,6 +7,7 @@
     <a @click="logout" v-else>Logout</a>
     <div id="chats" v-if="checkLoggedIn">
       <h2>Chats</h2>
+      <router-link to="/create-chat">Create chat</router-link>
       <div class="chat" v-if="chats.length" v-for="chat in chats" :key="chat.id">
         <router-link :to="{ name: 'chat', params: {id: chat.id} }"><h2>{{ chat.name }}</h2></router-link>
       </div>
@@ -98,6 +99,9 @@ export default {
       width: 100%;
       border-top: 1px solid white !important;
       border-bottom: 1px solid white !important;
+      &:first-child {
+        border-top: 0px solid white;
+      }
       &:last-child {
         border-bottom: 0px solid white;
       }

@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import PostById from './views/PostById.vue'
 import CreatePost from './views/CreatePost.vue'
 import Chat from './views/Chat.vue'
+import CreateChat from './views/CreateChat.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/chat/:id',
       name: 'chat',
       component: Chat
+    },
+    {
+      path: '/create-chat',
+      name: 'createChat',
+      component: CreateChat
     }
   ]
 })
