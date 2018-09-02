@@ -54,6 +54,7 @@ export default {
 <style scoped lang="less">
 //https://coolors.co/2b2d42-004ba8-ff6700-011936-e83f6f
 #sidebar {
+  overflow: auto;
   position: fixed;
   height: 100%;
   width: 300px;
@@ -85,7 +86,7 @@ export default {
     float: left;
     margin-top: 300px;
     width: 80%;
-    border: 1px solid white ;
+    border: 1px solid white;
     border-radius: 8px;
     //padding: 20px;
     margin: 5px;

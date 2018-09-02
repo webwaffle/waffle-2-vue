@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => { return {
     chatName: '',
@@ -21,7 +22,7 @@ export default {
       .then(res => {
         if(res.data.success) {
           this.messageText = 'Created';
-          setTimeout(() => { this.$router.push() }, 1500);
+          setTimeout(() => { this.$router.push('/') }, 1500);
         } else {
           this.messageText = res.data.error;
           setTimeout(() => { this.messageText = null }, 1500);
