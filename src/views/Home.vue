@@ -31,7 +31,7 @@ export default {
       }
     },
     created() {
-      axios.get(location.protocol + '//' + location.hostname + ':3000/posts')
+      axios.get('__API_ROOT__' + '/posts')
       .then((res) => {
         //console.log(res)
         if(res.data.success) {
