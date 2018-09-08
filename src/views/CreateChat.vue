@@ -16,7 +16,7 @@ export default {
   }},
   methods: {
     createChat() {
-      axios.post(location.protocol + '//' + location.hostname + ':3000/create-chat?key=' + this.$store.state.user.apiKey, {
+      axios.post('__API_ROOT__' + '/create-chat?key=' + this.$store.state.user.apiKey, {
         name: this.chatName
       })
       .then(res => {

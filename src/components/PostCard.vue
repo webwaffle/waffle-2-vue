@@ -32,7 +32,7 @@ export default {
     }
   }/*,
   created() {
-    axios.get(location.protocol + '//' + location.hostname + ':3000/checkliked/' + this.props.id + '?key=' + this.$store.state.user.apiKey)
+    axios.get('__API_ROOT__' + '/checkliked/' + this.props.id + '?key=' + this.$store.state.user.apiKey)
     .then(res => {
       if(res.data.success) {
         this.liked = res.data.liked;

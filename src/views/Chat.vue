@@ -64,7 +64,7 @@ export default {
       .catch(console.log)
     },
     getMessages() {
-      axios.get('http://localhost:3000' + '/chat-info/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey)
+      axios.get('__API_ROOT__' + '/chat-info/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey)
       .then((res) => {
         if(res.data.success) {
           this.chat = res.data.chat

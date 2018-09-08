@@ -24,7 +24,7 @@
     methods: {
       loginUser() {
         if (this.username && this.password) {
-          axios.post(location.protocol + '//' + location.hostname + ':3000/login', {
+          axios.post('__API_ROOT__' + '/login', {
             username: this.username,
             password: this.password,
           })
@@ -46,7 +46,7 @@
       },
       createUser() {
         if(this.username && this.password) {
-          axios.post(location.protocol + '//' + location.hostname + ':3000/create-user', {
+          axios.post('__API_ROOT__' + '/create-user', {
             username: this.username,
             password: this.password,
           })

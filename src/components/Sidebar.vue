@@ -37,7 +37,7 @@ export default {
   },
   created() {
     if(this.$store.state.user.username) {
-      axios.get(location.protocol + '//' + location.hostname + ':3000/get-chats?key=' + this.$store.state.user.apiKey)
+      axios.get('__API_ROOT__' + '/get-chats?key=' + this.$store.state.user.apiKey)
       .then((res) => {
         if(res.data.success) {
           this.chats = res.data.chats
