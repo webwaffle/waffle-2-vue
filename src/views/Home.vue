@@ -46,12 +46,9 @@ export default {
     },
     methods: {
       searchPosts() {
-        axios.get(location.protocol + '//' + location.hostname + ':3000/search-posts?q=' + this.search)
-        .then((res) => {
-          this.$set(this, 'posts', res.data.posts)
-          this.posts.reverse();
-        })
-        .catch(console.log)
+        if(this.search != '') {
+          this.posts = this.posts.filter(x => x.title.includes(this.search))
+        }
       }
     }
 }

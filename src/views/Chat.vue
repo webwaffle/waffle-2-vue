@@ -38,7 +38,7 @@ export default {
     }
   },
   created() {
-    axios.get(location.protocol + '//' + location.hostname + ':3000/chat-info/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey)
+    axios.get('__API_ROOT__' + '/chat-info/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey)
     .then((res) => {
       if(res.data.success) {
         this.chat = res.data.chat
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     sendMessage() {
-      axios.post(location.protocol + '//' + location.hostname + ':3000/chat-message/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey, {
+      axios.post('__API_ROOT__' + '/chat-message/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey, {
         message: this.message
       })
       .then(res => {
@@ -64,7 +64,7 @@ export default {
       .catch(console.log)
     },
     getMessages() {
-      axios.get(location.protocol + '//' + location.hostname + ':3000/chat-info/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey)
+      axios.get('http://localhost:3000' + '/chat-info/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey)
       .then((res) => {
         if(res.data.success) {
           this.chat = res.data.chat
@@ -75,7 +75,7 @@ export default {
       .catch(console.log)
     },
     inviteUser() {
-      axios.post(location.protocol + '//' + location.hostname + ':3000/chat-invite/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey, {
+      axios.post('__API_ROOT__' + '/chat-invite/' + this.$route.params.id + '?key=' + this.$store.state.user.apiKey, {
         username: this.toInvite
       })
       .then(res => {

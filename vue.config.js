@@ -9,6 +9,7 @@ module.exports = {
                     options: {
                         search: '__API_ROOT__',
                         replace: waffle.apiRoot,
+                        flags: 'g'
                     }
                 }
             ]
