@@ -1,14 +1,14 @@
 <template>
-  <router-link :to="{name: 'postById', params: {id: $props.post.id}}">
   <div class="PostCard animated bounceInDown">
+    <router-link :to="{name: 'postById', params: {id: $props.post.id}}">
       <h1 class="title">{{ $props.post.title }}</h1>
-      <p class="author">By {{ $props.post.poster }}</p>
-      <p class="posted">{{ relativeTime }}</p>
-      <LikeButton :id="$props.post.id"></LikeButton>
-      <p class="likes">{{ post.likes }}</p>
-      <p class="comments">{{ post.comments.length }} comments</p>
-    </div>
-  </router-link>
+    </router-link>
+    <p class="author">By {{ $props.post.poster }}</p>
+    <p class="posted">{{ relativeTime }}</p>
+    <LikeButton :id="$props.post.id"></LikeButton>
+    
+    <p class="comments">{{ post.comments.length }} comments</p>
+  </div>
 </template>
 
 <script>
@@ -70,8 +70,5 @@ export default {
   }
 }
 
-.likes {
-  margin: 0;
-  display: inline;
-}
+
 </style>

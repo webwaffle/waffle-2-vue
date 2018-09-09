@@ -1,7 +1,10 @@
 <template>
 <a>
-  <i v-if="liked" class="material-icons LikeButtonLiked" @click="likePost">favorite</i>
-  <i v-else class="material-icons LikeButtonNotLiked" @click="likePost">favorite</i>
+  <div class="LikeButton">
+    <i v-if="liked" class="material-icons LikeButtonLiked" @click="likePost">favorite</i>
+    <i v-else class="material-icons LikeButtonNotLiked" @click="likePost">favorite</i>
+    <p class="likes">{{ likes }}</p>
+  </div>
 </a>
 </template>
 
@@ -13,7 +16,8 @@ export default {
   },
   data() {
     return {
-      liked: false
+      liked: false,
+      likes: 0
     }
   },
   created() { //Get whether or not a post is liked
@@ -22,6 +26,7 @@ export default {
     .then(res => {
       if(res.data.success) {
         this.$set(this, 'liked', res.data.liked)
+        this.$set(this, 'likes', res.data.likes)
       } else {
         console.log(res)
       }
@@ -37,6 +42,11 @@ export default {
         if(res.data.success) {
           console.log('liked');
           this.liked = !this.liked
+          if(this.liked) {
+            this.likes++;
+          } else {
+            this.likes--;
+          }
         } else {
           console.log(res.data.error)
         }
@@ -55,5 +65,9 @@ export default {
 }
 .LikeButtonNotLiked {
 
+}
+.likes {
+  margin: 0;
+  display: inline;
 }
 </style>
