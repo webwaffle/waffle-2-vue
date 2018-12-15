@@ -3,7 +3,7 @@
     <router-link :to="{name: 'postById', params: {id: $props.post.id}}">
       <h1 class="title">{{ $props.post.title }}</h1>
     </router-link>
-    <p class="author">By {{ $props.post.poster }}</p>
+    <router-link class="author" :to="{name: 'user', params: {username: $props.post.poster}}">By {{ $props.post.poster }}</router-link>
     <p class="posted">{{ relativeTime }}</p>
     <LikeButton :id="$props.post.id"></LikeButton>
     

@@ -2,7 +2,7 @@
 <div class="PostById animated bounceInDown">
   <h1>{{ post.title }}</h1>
   <p class="time">{{ post.posted }}</p>
-  <p class="author">By {{ post.poster }}</p>
+  <router-link :to="{name: 'user', params: {username: post.poster}}" class="author">By {{ post.poster }}</router-link>
   <p class="content" v-html="post.content"></p>
   <LikeButton :id="parseInt($route.params.id, 10)"></LikeButton>
   <input type="text" v-model="comment">
@@ -50,7 +50,8 @@ export default {
         .then(res => {
           this.$set(this.post, 'comments', res.data.comments);
         })
-        .catch(console.log)
+        .catch(console.log);
+        this.comment = '';
       } else {
         this.commentSuccessText = "You need a comment first";
         setTimeout(() => { this.commentSuccessText = null }, 1500);
@@ -61,5 +62,8 @@ export default {
 </script>
 
 <style lang="less">
-
+.author {
+  text-decoration: none;
+  color: black;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h3>{{ comment.commenter }}</h3>
+  <router-link :to="{name: 'user', params: {username: $props.comment.commenter}}">{{ comment.commenter }}</router-link>
   <p>{{ comment.comment }}</p>
   <p class="time">Posted {{ time }}</p>
 </div>
@@ -31,6 +31,11 @@ div {
   .time {
     color: gray;
     font-size: 10px;
+  }
+  a {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
   }
 }
 </style>
