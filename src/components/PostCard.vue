@@ -52,7 +52,7 @@ export default {
   float: left;
   margin: 8px;
   padding: 12px;
-  width: 300px;
+  //width: 300px;
   height: 200px;
   box-shadow: 0px 0px 10px gray;
   border-radius: 10px;
