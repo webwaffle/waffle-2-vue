@@ -1,13 +1,14 @@
 <template>
 <div>
   <router-link :to="{name: 'user', params: {username: $props.comment.commenter}}">{{ comment.commenter }}</router-link>
-  <p>{{ comment.comment }}</p>
+  <p v-html="convertedHtml"></p>
   <p class="time">Posted {{ time }}</p>
 </div>
 </template>
 
 <script>
 import moment from 'moment'
+import Converter from '@/converter'
 export default {
   props: {
     comment: Object
@@ -15,6 +16,9 @@ export default {
   computed: {
     time() {
       return moment(this.$props.comment.commented, "MM-DD-YYYY h:mm:ss a").fromNow()
+    },
+    convertedHtml() {
+      return Converter.makeHtml(this.$props.comment.comment)
     }
   }
 }

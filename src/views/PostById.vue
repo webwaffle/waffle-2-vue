@@ -5,8 +5,10 @@
   <router-link :to="{name: 'user', params: {username: post.poster}}" class="author">By {{ post.poster }}</router-link>
   <p class="content" v-html="post.content"></p>
   <LikeButton :id="parseInt($route.params.id, 10)"></LikeButton>
-  <input type="text" v-model="comment">
+  <textarea col="50" rows="5" v-model="comment" @input="updateHtml"></textarea><br>
   <button @click="createComment">Comment</button>
+  <p>Result:</p>
+  <div v-html="commentHtml"></div>
   <p v-if="commentSuccessText">{{ commentSuccessText }}</p>
   <Comment v-for="x in post.comments" :comment="x" :key="x.comment"></Comment>
 </div>
@@ -18,11 +20,13 @@ import moment from 'moment'
 import converter from '@/converter'
 import LikeButton from '@/components/LikeButton.vue'
 import Comment from '@/components/Comment.vue'
+import Converter from '@/converter'
 export default {
   data() {
     return {
       post: {},
       comment: '',
+      commentHtml: '',
       commentSuccessText: null
     }
   },
@@ -56,6 +60,9 @@ export default {
         this.commentSuccessText = "You need a comment first";
         setTimeout(() => { this.commentSuccessText = null }, 1500);
       }
+    },
+    updateHtml() {
+      this.commentHtml = converter.makeHtml(this.comment)
     }
   }
 }
