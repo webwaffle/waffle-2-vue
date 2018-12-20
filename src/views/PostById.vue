@@ -3,7 +3,15 @@
   <h1>{{ post.title }}</h1>
   <p class="time">{{ post.posted }}</p>
   <router-link :to="{name: 'user', params: {username: post.poster}}" class="author">By {{ post.poster }}</router-link>
-  <p class="content" v-html="post.content"></p>
+  <p class="content" v-html="post.content" v-if="!editingMode"></p>
+
+  <br>
+  <textarea v-else></textarea>
+  <button v-if="post.poster == $store.state.user.username" @click="editingMode = true">
+    Edit Post
+  </button>
+  
+
   <LikeButton :id="parseInt($route.params.id, 10)"></LikeButton>
   <textarea col="50" rows="5" v-model="comment" @input="updateHtml"></textarea><br>
   <button @click="createComment">Comment</button>
@@ -27,7 +35,8 @@ export default {
       post: {},
       comment: '',
       commentHtml: '',
-      commentSuccessText: null
+      commentSuccessText: null,
+      editingMode: false
     }
   },
   components: {
